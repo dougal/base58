@@ -24,7 +24,7 @@ Paypal address: mailto:dougal.s@gmail.com
 
 == RDoc Documentation
 
-You can view the rdoc documentation online[http://douglasfshearer.com/rdoc/base64/].
+You can view the rdoc documentation online[http://douglasfshearer.com/rdoc/base58/].
 
 == Problems, Comments, Suggestions?
 

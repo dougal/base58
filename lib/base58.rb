@@ -1,4 +1,4 @@
-# Base64
+# Base58
 # Copyright (c) 2009 Douglas F Shearer.
 # http://douglasfshearer.com
 # Distributed under the MIT license as included with this plugin.
