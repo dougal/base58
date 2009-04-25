@@ -1,0 +1,38 @@
+= Base58
+
+If you find this library useful, please consider a donation to show your support!
+
+http://www.paypal.com/cgi-bin/webscr?cmd=_send-money
+  
+Paypal address: mailto:dougal.s@gmail.com
+
+=== Install
+  
+  $ gem sources -a http://gems.github.com (you only have to do this once)
+  $ sudo gem install dougal-base58
+
+== Usage
+
+  require 'rubygems'
+  require 'base58'
+  
+  # Int to Base58
+  Base58.int_to_base58(12345) # => 4ER
+  
+  # Base58 to Int
+  Base58.base58_to_int('A2Ph') # => 6639914
+
+== RDoc Documentation
+
+You can view the rdoc documentation online[http://douglasfshearer.com/rdoc/base64/].
+
+== Problems, Comments, Suggestions?
+
+All of the above are most welcome. mailto:dougal.s@gmail.com
+
+
+== Credits
+
+Douglas F Shearer - http://douglasfshearer.com
+
+Test examples courtesy Fraser Speirs' Base58Encoder Objective-C class, http://gist.github.com/101674.
