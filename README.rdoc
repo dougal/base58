@@ -8,8 +8,9 @@ Paypal address: mailto:dougal.s@gmail.com
 
 === Install
   
-  $ gem sources -a http://gems.github.com (you only have to do this once)
-  $ sudo gem install dougal-base58
+Base58 is hosted by http://gemcutter.com. Please make sure you have added them to your gem sources.
+
+  $ sudo gem install base58
 
 == Usage
 
