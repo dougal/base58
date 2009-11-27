@@ -1,3 +1,6 @@
+= 0.0.4
+- Gracefully deals with bad input. Thanks to isnotvalid on Github.
+
 = 0.0.3
 - Removed accidental dependencies.
 

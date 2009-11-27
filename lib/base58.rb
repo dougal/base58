@@ -19,6 +19,7 @@ class Base58
 
   # Converts a base10 integer to a base58 string.
   def self.int_to_base58(int_val)
+    raise ArgumentError, 'Value passed is not an Integer.' unless int_val.is_a?(Integer)
     base58_val = ''
     while(int_val >= BASE)
       mod = int_val % BASE

@@ -515,4 +515,10 @@ EXAMPLES =  { "6hKMCS" => 3471391110,
       assert_equal expected, Base58.base58_to_int(base_58)
     end
   end
+  
+  def test_string_instead_of_int
+    e = assert_raise(ArgumentError) { Base58.int_to_base58('3470432637') }
+    assert_equal 'Value passed is not an Integer.', e.message
+  end
+  
 end
