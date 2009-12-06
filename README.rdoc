@@ -25,7 +25,7 @@ Base58 is hosted by http://gemcutter.com. Please make sure you have added them t
 
 == RDoc Documentation
 
-You can view the rdoc documentation online[http://douglasfshearer.com/rdoc/base58/].
+You can view the rdoc documentation online[http://rdoc.info/projects/dougal/acts_as_indexed/].
 
 == Problems, Comments, Suggestions?
 
