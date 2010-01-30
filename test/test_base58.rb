@@ -521,4 +521,11 @@ EXAMPLES =  { "6hKMCS" => 3471391110,
     assert_equal 'Value passed is not an Integer.', e.message
   end
   
+  def test_encode_decode_aliases
+    int = 3471844090
+    str = Base58.encode(int)
+    assert_equal str, "6hN7hS"
+    assert_equal int, Base58.decode(str)
+  end
+  
 end
