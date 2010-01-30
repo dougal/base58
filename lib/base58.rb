@@ -12,7 +12,8 @@ class Base58
   def self.base58_to_int(base58_val)
     int_val = 0
     base58_val.reverse.split(//).each_with_index do |char,index|
-      int_val += (ALPHABET.index(char))*(BASE**(index))
+      raise ArgumentError, 'Value passed not a valid Base58 String.' if (char_index = ALPHABET.index(char)).nil?
+      int_val += (char_index)*(BASE**(index))
     end
     int_val
   end

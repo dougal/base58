@@ -521,6 +521,11 @@ EXAMPLES =  { "6hKMCS" => 3471391110,
     assert_equal 'Value passed is not an Integer.', e.message
   end
   
+  def test_invalid_base58_string
+    e = assert_raise(ArgumentError) { Base58.base58_to_int('nh?') }
+    assert_equal 'Value passed not a valid Base58 String.', e.message
+  end
+  
   def test_encode_decode_aliases
     int = 3471844090
     str = Base58.encode(int)
