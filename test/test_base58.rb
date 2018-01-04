@@ -3,7 +3,9 @@ require 'base58'
 
 class TestBase58 < Test::Unit::TestCase
 
-EXAMPLES =  { "6hKMCS" => 3471391110,
+EXAMPLES =  {
+  :flickr => {
+              "6hKMCS" => 3471391110,
               "6hDrmR" => 3470152229,
               "6hHHZB" => 3470988633,
               "6hHKum" => 3470993664,
@@ -502,16 +504,50 @@ EXAMPLES =  { "6hKMCS" => 3471391110,
               "6hGMH7" => 3470806020,
               "6hGp5L" => 3470729904,
               "6hFfRV" => 3470507135,
-              "6hESHt" => 3470432637 }
+              "6hESHt" => 3470432637
+    },
+    :bitcoin => {
+              "6Hknds" => 3471391110,
+              "6HeSMr" => 3470152229,
+              "6Hiizc" => 3470988633,
+              "6HikVM" => 3470993664,
+              "6HmGgw" => 3471485480,
+              "6Hcrkr" => 3469844075
+    },
+    :ripple => {
+              "aHk8d1" => 3471391110,
+              "aHeSMi" => 3470152229,
+              "aH55zc" => 3470988633,
+              "aH5kVM" => 3470993664,
+              "aHmGgA" => 3471485480,
+              "aHciki" => 3469844075
+    }
+  }
 
-  def test_int_to_base58
-    EXAMPLES.each do |expected, integer|
+  def test_int_to_base58_all_alphabets
+    EXAMPLES.each do |alphabet, examples|
+      examples.each do |expected, integer|
+        assert_equal expected, Base58.int_to_base58(integer, alphabet)
+      end
+    end
+  end
+
+  def test_base58_to_int_all_alphabets
+    EXAMPLES.each do |alphabet, examples|
+      examples.each do |base_58, expected|
+        assert_equal expected, Base58.base58_to_int(base_58, alphabet)
+      end
+    end
+  end
+
+  def test_int_to_base58_default_alphabet
+    EXAMPLES[:flickr].each do |expected, integer|
       assert_equal expected, Base58.int_to_base58(integer)
     end
   end  
 
-  def test_base58_to_int
-    EXAMPLES.each do |base_58, expected|
+  def test_base58_to_int_default_alphabet
+    EXAMPLES[:flickr].each do |base_58, expected|
       assert_equal expected, Base58.base58_to_int(base_58)
     end
   end
