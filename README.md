@@ -46,7 +46,7 @@ Base58 alphabets are made up of the characters a-z, A-Z, and 0-9, with visually 
 
 ## Supported Alphabets
 
-This library supports three of of the most common Base58 libraries, which while being identical in their characters, are ordered differently.
+This library supports three of the most common Base58 alphabets, which have identical, but differently sorted characters.
 
 The alphabet to be used can be selected by passing a symbol for the desired alphabet as a second argument to `Base58.encode` and `Base58.decode`.
 
@@ -84,7 +84,7 @@ The alphabet used by the [Ripple protocol](https://en.wikipedia.org/wiki/Ripple_
 
 ## Contributing
 
-Source repository is at https://github.com/dougal/base58, please file issues and pull requests there.
+Source repository is on [Github](https://github.com/dougal/base58), please file issues and pull requests there.
 
 
 ## Documentation
@@ -100,7 +100,7 @@ rake rdoc
 
 ## Credits
 
-  * [Joel Nordell](https://github.com/joelnordell) for Bitcoing and Ripple alphabet support.
+  * [Joel Nordell](https://github.com/joelnordell) for Bitcoin and Ripple alphabet support.
 
 
 ## Copyright and Licence
@@ -108,3 +108,4 @@ rake rdoc
 Copyright (c) 2009-2018, Douglas F Shearer.
 
 Base58 is licensed under the MIT Licence.
+
