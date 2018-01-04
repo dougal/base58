@@ -48,11 +48,13 @@ Base58 alphabets are made up of the characters a-z, A-Z, and 0-9, with visually 
 
 This library supports three of the most common Base58 alphabets, which have identical, but differently sorted characters.
 
-The alphabet to be used can be selected by passing a symbol for the desired alphabet as a second argument to `Base58.encode` and `Base58.decode`.
+Alphabets can be selected by passing a symbol to the second argument of `Base58.encode` and `Base58.decode`.
 
 ```ruby
 Base58.encode(12345, :bitcoin)
 ```
+
+`:flickr` is the default if no second argument is passed.
 
 
 ### Flickr
