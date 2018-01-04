@@ -7,10 +7,12 @@ class Base58
 
   # See https://en.wikipedia.org/wiki/Base58
   ALPHABETS = {
-    :flickr => "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ", # This is the default
-    :bitcoin => "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz", # Also used for IPFS
-    :ripple => "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
+    flickr:  "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ", # This is the default
+    bitcoin: "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz", # Also used for IPFS
+    ripple:  "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
   }
+
+  # NOTE: If adding new alphabets of non-standard length, this should become a method.
   BASE = ALPHABETS[:flickr].length
 
   # Converts a base58 string to a base10 integer.
