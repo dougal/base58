@@ -1,7 +1,7 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
- 
+require 'rdoc/task'
+
 desc 'Default: run unit tests.'
 task :default => :test
 
@@ -25,11 +25,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "base58"
-    gemspec.summary = "Base58 is a Ruby library for converting ints to and from base58."
+    gemspec.summary = "Base58 is a Ruby library for converting ints or binaries to and from base58."
     gemspec.description = gemspec.summary
     gemspec.email = "dougal.s@gmail.com"
     gemspec.homepage = "http://github.com/dougal/base58"
-    gemspec.authors = ["Douglas F Shearer"]  
+    gemspec.authors = ["Douglas F Shearer"]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
