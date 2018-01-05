@@ -551,6 +551,147 @@ EXAMPLES =  {
     }
   }
 
+  LEADING_ZEROES_EXAMPLES = {
+    :bitcoin => [
+      {
+        :hex => "00000000000000000000123456789ABCDEF0",
+        :b58 => "111111111143c9JGph3DZ",
+        :b58_no_zeroes => "43c9JGph3DZ"
+      },
+      {
+        :hex => "00000000000000000000",
+        :b58 => "1111111111",
+        :b58_no_zeroes => "1"
+      },
+      {
+        :hex => "00",
+        :b58 => "1",
+        :b58_no_zeroes => "1"
+      },
+      {
+        :hex => "",
+        :b58 => "1",
+        :b58_no_zeroes => "1"
+      },
+    ],
+    :flickr => [
+      {
+        :hex => "00000000000000000000123456789ABCDEF0",
+        :b58 => "111111111143B9igPG3dy",
+        :b58_no_zeroes => "43B9igPG3dy"
+      },
+      {
+        :hex => "00000000000000000000",
+        :b58 => "1111111111",
+        :b58_no_zeroes => "1"
+      },
+      {
+        :hex => "00",
+        :b58 => "1",
+        :b58_no_zeroes => "1"
+      },
+      {
+        :hex => "",
+        :b58 => "1",
+        :b58_no_zeroes => "1"
+      },
+    ],
+    :ripple => [
+      {
+        :hex => "00000000000000000000123456789ABCDEF0",
+        :b58 => "rrrrrrrrrrhsc9JGF6sDZ",
+        :b58_no_zeroes => "hsc9JGF6sDZ"
+      },
+      {
+        :hex => "00000000000000000000",
+        :b58 => "rrrrrrrrrr",
+        :b58_no_zeroes => "r"
+      },
+      {
+        :hex => "00",
+        :b58 => "r",
+        :b58_no_zeroes => "r"
+      },
+      {
+        :hex => "",
+        :b58 => "r",
+        :b58_no_zeroes => "r"
+      }
+    ]
+  }
+
+  HEX_TO_BIN = ->hex { [hex].pack('H*') }
+  HEX_TO_INT = ->hex { hex.to_i(16) }
+
+  STRIP_LEADING = ->char { ->str { str.gsub(/^#{char}*/, '') } }
+  STRIP_BINARY = STRIP_LEADING["\x00"]
+
+  LEADING_ZEROES_EXAMPLES.each do |alphabet, examples|
+    examples.each do |example|
+      define_method("test_binary_to_base58_leading_zeroes_#{alphabet}_#{example[:hex]}") do
+        bin = HEX_TO_BIN[example[:hex]]
+        bin_no_zeroes = STRIP_BINARY[bin]
+
+        assert_equal example[:b58], Base58.binary_to_base58(bin, alphabet) # Default behavior is to include leading zeroes
+        assert_equal example[:b58], Base58.binary_to_base58(bin, alphabet, true)
+        assert_equal example[:b58_no_zeroes], Base58.binary_to_base58(bin, alphabet, false) # Optionally, leading zeroes may be omitted
+
+        # If there are no zeroes in the input, there are never zeroes in the output
+        assert_equal example[:b58_no_zeroes], Base58.binary_to_base58(bin_no_zeroes, alphabet)
+        assert_equal example[:b58_no_zeroes], Base58.binary_to_base58(bin_no_zeroes, alphabet, true)
+        assert_equal example[:b58_no_zeroes], Base58.binary_to_base58(bin_no_zeroes, alphabet, false)
+      end
+    end
+  end
+
+  LEADING_ZEROES_EXAMPLES.each do |alphabet, examples|
+    examples.each do |example|
+      define_method("test_base58_to_binary_leading_zeroes_#{alphabet}_#{example[:hex]}") do
+        bin = HEX_TO_BIN[example[:hex]]
+        bin_no_zeroes = STRIP_BINARY[bin]
+
+        # When converting from base58, an empty string will never be produced.
+        bin_no_zeroes = "\x00" if bin_no_zeroes.empty?
+        bin = "\x00" if bin.empty?
+
+        assert_equal bin, Base58.base58_to_binary(example[:b58], alphabet)
+        assert_equal bin_no_zeroes, Base58.base58_to_binary(example[:b58_no_zeroes], alphabet)
+      end
+    end
+  end
+
+  LEADING_ZEROES_EXAMPLES.each do |alphabet, examples|
+    examples.each do |example|
+      define_method("test_int_to_base58_leading_zeroes_#{alphabet}_#{example[:hex]}") do
+        assert_equal example[:b58_no_zeroes], Base58.int_to_base58(HEX_TO_INT[example[:hex]], alphabet)
+      end
+    end
+  end
+
+  LEADING_ZEROES_EXAMPLES.each do |alphabet, examples|
+    examples.each do |example|
+      define_method("test_base58_to_int_leading_zeroes_#{alphabet}_#{example[:hex]}") do
+        assert_equal HEX_TO_INT[example[:hex]], Base58.base58_to_int(example[:b58], alphabet)
+        assert_equal HEX_TO_INT[example[:hex]], Base58.base58_to_int(example[:b58_no_zeroes], alphabet)
+      end
+    end
+  end
+
+  def test_base58_to_binary_empty_input
+    assert_equal "\x00", Base58.base58_to_binary("")
+  end
+
+  def test_base58_to_int_leading_zeroes_other_examples
+    # All other examples, when prepended with varying amounts of leading zeroes, should work properly.
+    EXAMPLES.each do |alphabet, examples|
+      examples.each do |base_58, expected|
+        (0..50).each do |n|
+          assert_equal expected, Base58.base58_to_int( (Base58::ALPHABETS[alphabet][0] * n) + base_58, alphabet )
+        end
+      end
+    end
+  end
+
   def test_binary_to_base58_all_alphabets
     BINARY_STRING_EXAMPLES.each do |alphabet, examples|
       examples.each do |expected, integer|
