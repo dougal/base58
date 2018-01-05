@@ -115,6 +115,7 @@ rake rdoc
 ## Credits
 
   * [Joel Nordell](https://github.com/joelnordell) for Bitcoin and Ripple alphabet support. Also binary encoding support.
+  * [Jim Myhrberg](https://github.com/jimeh) for argument checking and method aliases.
 
 
 ## Copyright and Licence
