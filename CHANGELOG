@@ -1,11 +1,13 @@
-= 0.0.4
-- Gracefully deals with bad input. Thanks to isnotvalid on Github.
+= 0.2.0 [2017-01-05]
+- Bitcoin and Ripple alphabet support. Thanks to @joelnordell.
+- Binary encoding and decoding support. Thanks to @joelnordell.
 
-= 0.0.3
-- Removed accidental dependencies.
+= 0.1.0 [2010-02-05]
+- Better argument checking. Thanks to @jimeh.
+- Add `encode` and `decode` aliases.
 
-= 0.0.2
-- Fixed typos.
+= 0.0.4 [2009-11-27]
+- Gracefully deals with bad input. Thanks to @isnotvalid.
 
-= 0.0.1
+= 0.0.3 [2009-11-05]
 - Initial release.
