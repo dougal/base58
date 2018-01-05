@@ -57,5 +57,5 @@ class Base58
     alias_method :encode, :int_to_base58
     alias_method :decode, :base58_to_int
   end
-  
+
 end
