@@ -524,6 +524,49 @@ EXAMPLES =  {
     }
   }
 
+  BINARY_STRING_EXAMPLES = {
+    :flickr => {
+              "6hKMCS" => "\xCE\xE99\x86".force_encoding('BINARY'),
+              "6hDrmR" => "\xCE\xD6R%".force_encoding('BINARY'),
+              "6hHHZB" => "\xCE\xE3\x15Y".force_encoding('BINARY'),
+              "6hHKum" => "\xCE\xE3)\x00".force_encoding('BINARY'),
+              "6hLgFW" => "\xCE\xEA\xAA(".force_encoding('BINARY'),
+              "6hBRKR" => "\xCE\xD1\x9Ek".force_encoding('BINARY')
+    },
+    :bitcoin => {
+              "6Hknds" => "\xCE\xE99\x86".force_encoding('BINARY'),
+              "6HeSMr" => "\xCE\xD6R%".force_encoding('BINARY'),
+              "6Hiizc" => "\xCE\xE3\x15Y".force_encoding('BINARY'),
+              "6HikVM" => "\xCE\xE3)\x00".force_encoding('BINARY'),
+              "6HmGgw" => "\xCE\xEA\xAA(".force_encoding('BINARY'),
+              "6Hcrkr" => "\xCE\xD1\x9Ek".force_encoding('BINARY')
+    },
+    :ripple => {
+              "aHk8d1" => "\xCE\xE99\x86".force_encoding('BINARY'),
+              "aHeSMi" => "\xCE\xD6R%".force_encoding('BINARY'),
+              "aH55zc" => "\xCE\xE3\x15Y".force_encoding('BINARY'),
+              "aH5kVM" => "\xCE\xE3)\x00".force_encoding('BINARY'),
+              "aHmGgA" => "\xCE\xEA\xAA(".force_encoding('BINARY'),
+              "aHciki" => "\xCE\xD1\x9Ek".force_encoding('BINARY')
+    }
+  }
+
+  def test_binary_to_base58_all_alphabets
+    BINARY_STRING_EXAMPLES.each do |alphabet, examples|
+      examples.each do |expected, integer|
+        assert_equal expected, Base58.binary_to_base58(integer, alphabet)
+      end
+    end
+  end
+
+  def test_base58_to_binary_all_alphabets
+    BINARY_STRING_EXAMPLES.each do |alphabet, examples|
+      examples.each do |base_58, expected|
+        assert_equal expected, Base58.base58_to_binary(base_58, alphabet)
+      end
+    end
+  end
+
   def test_int_to_base58_all_alphabets
     EXAMPLES.each do |alphabet, examples|
       examples.each do |expected, integer|
