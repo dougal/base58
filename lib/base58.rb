@@ -44,7 +44,7 @@ class Base58
     raise ArgumentError, 'Value passed is not a String.' unless binary_val.is_a?(String)
     raise ArgumentError, 'Value passed is not binary.' unless binary_val.encoding == Encoding::BINARY
     raise ArgumentError, 'Invalid alphabet selection.' unless ALPHABETS.include?(alphabet)
-    int_to_base58 binary_val.bytes.inject{|a,b|(a<<8)+b}, alphabet
+    int_to_base58(binary_val.bytes.inject{|a,b|(a<<8)+b}, alphabet)
   end
 
   # Converts a base58 string to an ASCII-8BIT (binary) encoded string.
