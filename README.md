@@ -120,7 +120,7 @@ rake rdoc
 
 ## Copyright and Licence
 
-Copyright (c) 2009-2018, Douglas F Shearer.
+Copyright (c) 2009 - 2018, Douglas F Shearer.
 
 Base58 is licensed under the MIT Licence.
 
