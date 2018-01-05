@@ -8,13 +8,25 @@ Ruby gem for encoding/decoding integers to/from Base58. Supports Flickr, Bitcoin
 Converting an integer into a Base58 string:
 
 ```ruby
-Base58.encode(12345) # => "4ER"
+Base58.int_to_base58(12345) # => "4ER"
 ```
 
 Converting a Base58 string to the represented integer:
 
 ```ruby
-Base58.decode("A2Ph") # => 6639914
+Base58.base58_to_int("A2Ph") # => 6639914
+```
+
+Converting a binary into a Base58 string:
+
+```ruby
+Base58.binary_to_base58("\xCE\xE99\x86".force_encoding('BINARY')) # => "6hKMCS"
+```
+
+Converting a Base58 string to the represented binary:
+
+```ruby
+Base58.base58_to_binary("6hKMCS") # => "\xCE\xE99\x86"
 ```
 
 
@@ -48,10 +60,10 @@ Base58 alphabets are made up of the characters a-z, A-Z, and 0-9, with visually 
 
 This library supports three of the most common Base58 alphabets, which have identical, but differently sorted characters.
 
-Alphabets can be selected by passing a symbol to the second argument of `Base58.encode` and `Base58.decode`.
+Alphabets can be selected by passing a symbol to the second argument of `Base58.int_to_base58` and `Base58.base58_to_int`.
 
 ```ruby
-Base58.encode(12345, :bitcoin)
+Base58.int_to_base58(12345, :bitcoin)
 ```
 
 `:flickr` is the default if no second argument is passed.
@@ -102,7 +114,7 @@ rake rdoc
 
 ## Credits
 
-  * [Joel Nordell](https://github.com/joelnordell) for Bitcoin and Ripple alphabet support.
+  * [Joel Nordell](https://github.com/joelnordell) for Bitcoin and Ripple alphabet support. Also binary encoding support.
 
 
 ## Copyright and Licence
