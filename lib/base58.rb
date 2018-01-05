@@ -1,5 +1,5 @@
 # Base58
-# Copyright (c) 2009 Douglas F Shearer.
+# Copyright (c) 2009 - 2017 Douglas F Shearer.
 # http://douglasfshearer.com
 # Distributed under the MIT license as included with this plugin.
 
