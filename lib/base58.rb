@@ -40,17 +40,30 @@ class Base58
   end
 
   # Converts a ASCII-8BIT (binary) encoded string to a base58 string.
-  def self.binary_to_base58(binary_val, alphabet = :flickr)
+  def self.binary_to_base58(binary_val, alphabet = :flickr, include_leading_zeroes = true)
     raise ArgumentError, 'Value passed is not a String.' unless binary_val.is_a?(String)
     raise ArgumentError, 'Value passed is not binary.' unless binary_val.encoding == Encoding::BINARY
     raise ArgumentError, 'Invalid alphabet selection.' unless ALPHABETS.include?(alphabet)
-    int_to_base58(binary_val.bytes.inject{|a,b|(a<<8)+b}, alphabet)
+    return int_to_base58(0, alphabet) if binary_val.empty?
+
+    if include_leading_zeroes
+      nzeroes = binary_val.bytes.find_index{|b| b != 0} || binary_val.length-1
+      prefix = ALPHABETS[alphabet][0] * nzeroes
+    else
+      prefix = ''
+    end
+
+    prefix + int_to_base58(binary_val.bytes.inject{|a,b|(a<<8)+b}, alphabet)
   end
 
   # Converts a base58 string to an ASCII-8BIT (binary) encoded string.
+  # All leading zeroes in the base58 input are preserved and converted to
+  # "\x00" in the output.
   def self.base58_to_binary(base58_val, alphabet = :flickr)
     raise ArgumentError, 'Invalid alphabet selection.' unless ALPHABETS.include?(alphabet)
-    [base58_to_int(base58_val, alphabet).to_s(16)].pack('H*')
+    nzeroes = base58_val.chars.find_index{|c| c != ALPHABETS[alphabet][0]} || base58_val.length-1
+    prefix = nzeroes < 0 ? '' : '00' * nzeroes
+    [prefix + base58_to_int(base58_val, alphabet).to_s(16)].pack('H*')
   end
 
   class << self
