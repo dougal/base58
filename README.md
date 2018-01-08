@@ -86,6 +86,8 @@ The alphabet used by the [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) protoc
 
     123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
 
+See the "Leading Zeros" section for enabling full Bitcoin-style leading-zeros support.
+
 
 ### Ripple
 
@@ -95,6 +97,17 @@ The alphabet used by the [Ripple protocol](https://en.wikipedia.org/wiki/Ripple_
 
     rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz
 
+
+## Leading Zeroes
+
+Some protocols, such as Bitcoin, require that leading zeros be encoded. Passing `true` to the third argument of binary_to_base58()` will enable this behaviour.
+
+```ruby
+bitcoin_address_hex = '00000000000000000000123456789ABCDEF0'
+bitcoin_address_bin = [bitcoin_address_hex].pack('H*')
+
+Base58.binary_to_base58(bitcoin_address_bin, :bitcoin, true) # => 111111111143c9JGph3DZ
+```
 
 ## Contributing
 
@@ -114,7 +127,7 @@ rake rdoc
 
 ## Credits
 
-  * [Joel Nordell](https://github.com/joelnordell) for Bitcoin and Ripple alphabet support. Also binary encoding support.
+  * [Joel Nordell](https://github.com/joelnordell) for various Bitcoin/Ripple support features.
   * [Jim Myhrberg](https://github.com/jimeh) for argument checking and method aliases.
 
 
