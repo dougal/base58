@@ -1,3 +1,6 @@
+= 0.2.1 [2017-01-08]
+- Bitcoin-style leading-zeroes encoding. Thanks to @joelnordell.
+
 = 0.2.0 [2017-01-05]
 - Bitcoin and Ripple alphabet support. Thanks to @joelnordell.
 - Binary encoding and decoding support. Thanks to @joelnordell.
