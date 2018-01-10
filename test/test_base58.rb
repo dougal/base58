@@ -708,6 +708,15 @@ EXAMPLES =  {
     end
   end
 
+  def test_base58_to_binary_round_trip
+    BINARY_STRING_EXAMPLES.each do |alphabet, examples|
+      examples.each do |base_58, binary|
+        assert_equal base_58, Base58.binary_to_base58(Base58.base58_to_binary(base_58, alphabet), alphabet)
+        assert_equal binary,  Base58.base58_to_binary(Base58.binary_to_base58(binary,  alphabet), alphabet)
+      end
+    end
+  end
+
   def test_int_to_base58_all_alphabets
     EXAMPLES.each do |alphabet, examples|
       examples.each do |expected, integer|
