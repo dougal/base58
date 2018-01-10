@@ -53,7 +53,7 @@ class Base58
       prefix = ''
     end
 
-    prefix + int_to_base58(binary_val.bytes.inject{|a,b|(a<<8)+b}, alphabet)
+    prefix + int_to_base58(binary_val.unpack('H*')[0].to_i(16), alphabet)
   end
 
   # Converts a base58 string to an ASCII-8BIT (binary) encoded string.
