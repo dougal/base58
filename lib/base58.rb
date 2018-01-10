@@ -63,7 +63,16 @@ class Base58
     raise ArgumentError, 'Invalid alphabet selection.' unless ALPHABETS.include?(alphabet)
     nzeroes = base58_val.chars.find_index{|c| c != ALPHABETS[alphabet][0]} || base58_val.length-1
     prefix = nzeroes < 0 ? '' : '00' * nzeroes
-    [prefix + base58_to_int(base58_val, alphabet).to_s(16)].pack('H*')
+    [prefix + Private::int_to_hex(base58_to_int(base58_val, alphabet))].pack('H*')
+  end
+
+  module Private
+    def self.int_to_hex int
+      hex = int.to_s(16)
+      # The hex string must always consist of an even number of characters,
+      # otherwise the pack() parsing will be misaligned.
+      (hex.length % 2 == 0) ? hex : ('0'+hex)
+    end
   end
 
   class << self
