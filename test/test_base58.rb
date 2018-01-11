@@ -531,7 +531,8 @@ EXAMPLES =  {
               "6hHHZB" => "\xCE\xE3\x15Y".force_encoding('BINARY'),
               "6hHKum" => "\xCE\xE3)\x00".force_encoding('BINARY'),
               "6hLgFW" => "\xCE\xEA\xAA(".force_encoding('BINARY'),
-              "6hBRKR" => "\xCE\xD1\x9Ek".force_encoding('BINARY')
+              "6hBRKR" => "\xCE\xD1\x9Ek".force_encoding('BINARY'),
+              "7xBSG3j7NgPksBpPnX1G7y19EuAy4swQexDoECfWdys" => "\x01\xAD<l'\xAF!\x96N\x93u\x93\xE2\xAF\x92p\x96=\x89n\xD7\x953\x17\x12\x8E\xBD\xA2\x04\x84~Z".force_encoding('BINARY')
     },
     :bitcoin => {
               "6Hknds" => "\xCE\xE99\x86".force_encoding('BINARY'),
@@ -539,7 +540,8 @@ EXAMPLES =  {
               "6Hiizc" => "\xCE\xE3\x15Y".force_encoding('BINARY'),
               "6HikVM" => "\xCE\xE3)\x00".force_encoding('BINARY'),
               "6HmGgw" => "\xCE\xEA\xAA(".force_encoding('BINARY'),
-              "6Hcrkr" => "\xCE\xD1\x9Ek".force_encoding('BINARY')
+              "6Hcrkr" => "\xCE\xD1\x9Ek".force_encoding('BINARY'),
+              "7Ycsh3K7oGpLTcQpNx1h7Z19fVbZ4TXqEYePfdFwDZT" => "\x01\xAD<l'\xAF!\x96N\x93u\x93\xE2\xAF\x92p\x96=\x89n\xD7\x953\x17\x12\x8E\xBD\xA2\x04\x84~Z".force_encoding('BINARY')
     },
     :ripple => {
               "aHk8d1" => "\xCE\xE99\x86".force_encoding('BINARY'),
@@ -547,7 +549,8 @@ EXAMPLES =  {
               "aH55zc" => "\xCE\xE3\x15Y".force_encoding('BINARY'),
               "aH5kVM" => "\xCE\xE3)\x00".force_encoding('BINARY'),
               "aHmGgA" => "\xCE\xEA\xAA(".force_encoding('BINARY'),
-              "aHciki" => "\xCE\xD1\x9Ek".force_encoding('BINARY')
+              "aHciki" => "\xCE\xD1\x9Ek".force_encoding('BINARY'),
+              "fYc16sKfoGFLTcQF4xr6fZr9CVbZhTXqNYePCdEADZT" => "\x01\xAD<l'\xAF!\x96N\x93u\x93\xE2\xAF\x92p\x96=\x89n\xD7\x953\x17\x12\x8E\xBD\xA2\x04\x84~Z".force_encoding('BINARY')
     }
   }
 
@@ -704,6 +707,15 @@ EXAMPLES =  {
     BINARY_STRING_EXAMPLES.each do |alphabet, examples|
       examples.each do |base_58, expected|
         assert_equal expected, Base58.base58_to_binary(base_58, alphabet)
+      end
+    end
+  end
+
+  def test_base58_to_binary_round_trip
+    BINARY_STRING_EXAMPLES.each do |alphabet, examples|
+      examples.each do |base_58, binary|
+        assert_equal base_58, Base58.binary_to_base58(Base58.base58_to_binary(base_58, alphabet), alphabet)
+        assert_equal binary,  Base58.base58_to_binary(Base58.binary_to_base58(binary,  alphabet), alphabet)
       end
     end
   end
