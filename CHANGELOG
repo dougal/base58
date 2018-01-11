@@ -1,3 +1,6 @@
+= 0.2.2 [2017-01-11]
+- Fix for incorrect encoding of leading-zeroes. Thanks to @joelnordell.
+
 = 0.2.1 [2017-01-08]
 - Bitcoin-style leading-zeroes encoding. Thanks to @joelnordell.
 
