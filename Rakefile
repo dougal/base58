@@ -30,6 +30,7 @@ begin
     gemspec.email = "dougal.s@gmail.com"
     gemspec.homepage = "http://github.com/dougal/base58"
     gemspec.authors = ["Douglas F Shearer"]
+    gemspec.licenses = ['MIT']
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

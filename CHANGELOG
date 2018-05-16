@@ -1,3 +1,6 @@
+= 0.2.3 [2018-05-16]
+- Add licence information to Gemspec.
+
 = 0.2.2 [2017-01-11]
 - Fix for incorrect encoding of leading-zeroes. Thanks to @joelnordell.
 
