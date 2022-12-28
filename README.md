@@ -17,7 +17,7 @@ Converting a Base58 string to the represented integer:
 Base58.base58_to_int("A2Ph") # => 6639914
 ```
 
-Converting a binary into a Base58 string:
+Converting binary into a Base58 string:
 
 ```ruby
 Base58.binary_to_base58("\xCE\xE99\x86".force_encoding('BINARY')) # => "6hKMCS"
@@ -32,7 +32,7 @@ Base58.base58_to_binary("6hKMCS") # => "\xCE\xE99\x86"
 
 ## Installation
 
-The package can be installed by adding scatter_swap to your list of dependencies in mix.exs:
+Install `base58` with the following command
 
 ```bash
 gem install base58
@@ -44,7 +44,7 @@ Or add it to your Gemfile
 gem 'base58'
 ```
 
-The run `bundle install`.
+Then run `bundle install`.
 
 
 ## What is Base58?
@@ -136,4 +136,3 @@ rake rdoc
 Copyright (c) 2009 - 2018, Douglas F Shearer.
 
 Base58 is licensed under the MIT Licence.
-
